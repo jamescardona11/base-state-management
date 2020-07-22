@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class TimerPage extends StatelessWidget {
-  final timeLap = [];
+  final timeLap = [
+    '00.51',
+    '06.94',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -37,19 +40,53 @@ class TimerPage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 50),
-            Container(
-              height: 250,
-              color: Colors.red,
-              child: ListView.builder(
-                itemCount: timeLap.length,
-                itemBuilder: (context, index) {
-                  return Container();
-                },
-              ),
-            ),
+            _LapList(timeLap: timeLap),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _LapList extends StatelessWidget {
+  const _LapList({
+    Key key,
+    @required this.timeLap,
+  }) : super(key: key);
+
+  final List<String> timeLap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      constraints: BoxConstraints(
+        minHeight: 100,
+        maxHeight: 450,
+      ),
+      child: ListView.builder(
+        itemCount: timeLap.length,
+        shrinkWrap: true,
+        reverse: true,
+        padding: const EdgeInsets.all(8),
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '# $index',
+                  style: TextStyle(color: Colors.grey),
+                ),
+                SizedBox(width: 10),
+                Text(
+                  timeLap[index],
+                  style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
