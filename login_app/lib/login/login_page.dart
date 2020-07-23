@@ -12,13 +12,6 @@ class LoginPage extends StatelessWidget {
           SignUpPage(),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Icons.navigate_next,
-          size: 35,
-        ),
-        onPressed: () {},
-      ),
     );
   }
 }

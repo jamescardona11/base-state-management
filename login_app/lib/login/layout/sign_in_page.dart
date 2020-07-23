@@ -23,7 +23,30 @@ class SignInPage extends StatelessWidget {
               ),
               SizedBox(height: 15),
               CustomEmailTextField(),
-              CustomPasswordTextField()
+              CustomPasswordTextField(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  MaterialButton(
+                    color: Colors.blue,
+                    minWidth: 120,
+                    onPressed: () {},
+                    child: Text(
+                      'Sign in',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  RawMaterialButton(
+                    onPressed: () {},
+                    child: Text('Register←'),
+                    padding: EdgeInsets.all(15.0),
+                  )
+                ],
+              )
             ],
           ),
         ),
