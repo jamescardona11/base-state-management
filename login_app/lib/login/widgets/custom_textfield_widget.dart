@@ -20,7 +20,6 @@ class _CustomTextFieldWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
       child: TextField(
         keyboardType: type,
-        textInputAction: TextInputAction.continueAction,
         textCapitalization: TextCapitalization.sentences,
         decoration: decoration.copyWith(
           border: OutlineInputBorder(),
@@ -33,6 +32,9 @@ class _CustomTextFieldWidget extends StatelessWidget {
 }
 
 class CustomEmailTextField extends StatelessWidget {
+  final Function onChanged;
+
+  const CustomEmailTextField({Key key, this.onChanged}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return _CustomTextFieldWidget(
@@ -41,12 +43,15 @@ class CustomEmailTextField extends StatelessWidget {
         prefixIcon: Icon(Icons.email),
         hintText: 'email...',
       ),
-      onChanged: (value) {},
+      onChanged: onChanged,
     );
   }
 }
 
 class CustomPasswordTextField extends StatelessWidget {
+  final Function onChanged;
+
+  const CustomPasswordTextField({Key key, this.onChanged}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return _CustomTextFieldWidget(
@@ -56,7 +61,7 @@ class CustomPasswordTextField extends StatelessWidget {
         hintText: 'password...',
       ),
       obscureText: true,
-      onChanged: (value) {},
+      onChanged: onChanged,
     );
   }
 }
