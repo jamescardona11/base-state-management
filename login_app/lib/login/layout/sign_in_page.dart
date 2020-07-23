@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:login_app/login/widgets/custom_textfield_widget.dart';
 
 class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FlutterLogo(
-              size: 45,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: TextField(
-                keyboardType: TextInputType.emailAddress,
-                textInputAction: TextInputAction.continueAction,
-                textCapitalization: TextCapitalization.sentences,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.email),
-                  hintText: 'email...',
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              SizedBox(height: 35),
+              FlutterLogo(size: size.width * 0.45),
+              SizedBox(height: 25),
+              Text(
+                'Sign In',
+                style: TextStyle(
+                  fontSize: 36,
+                  color: Colors.black87,
+                  fontWeight: FontWeight.bold,
                 ),
-                onChanged: (value) {},
               ),
-            )
-          ],
+              SizedBox(height: 15),
+              CustomEmailTextField(),
+              CustomPasswordTextField()
+            ],
+          ),
         ),
       ),
     );
