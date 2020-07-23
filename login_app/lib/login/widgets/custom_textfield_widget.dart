@@ -5,6 +5,7 @@ class _CustomTextFieldWidget extends StatelessWidget {
   final InputDecoration decoration;
   final Function(String) onChanged;
   final bool obscureText;
+  final bool errorInField;
 
   const _CustomTextFieldWidget({
     Key key,
@@ -12,6 +13,7 @@ class _CustomTextFieldWidget extends StatelessWidget {
     @required this.decoration,
     @required this.onChanged,
     this.obscureText = false,
+    this.errorInField = false,
   }) : super(key: key);
 
   @override
@@ -23,6 +25,7 @@ class _CustomTextFieldWidget extends StatelessWidget {
         textCapitalization: TextCapitalization.sentences,
         decoration: decoration.copyWith(
           border: OutlineInputBorder(),
+          errorText: errorInField ? 'Value Error' : null,
         ),
         obscureText: obscureText,
         onChanged: onChanged,
@@ -33,8 +36,13 @@ class _CustomTextFieldWidget extends StatelessWidget {
 
 class CustomEmailTextField extends StatelessWidget {
   final Function onChanged;
+  final bool errorInField;
 
-  const CustomEmailTextField({Key key, this.onChanged}) : super(key: key);
+  const CustomEmailTextField({
+    Key key,
+    this.onChanged,
+    this.errorInField,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return _CustomTextFieldWidget(
@@ -44,14 +52,20 @@ class CustomEmailTextField extends StatelessWidget {
         hintText: 'email...',
       ),
       onChanged: onChanged,
+      errorInField: errorInField,
     );
   }
 }
 
 class CustomPasswordTextField extends StatelessWidget {
   final Function onChanged;
+  final bool errorInField;
 
-  const CustomPasswordTextField({Key key, this.onChanged}) : super(key: key);
+  const CustomPasswordTextField({
+    Key key,
+    this.onChanged,
+    this.errorInField,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return _CustomTextFieldWidget(
@@ -62,6 +76,7 @@ class CustomPasswordTextField extends StatelessWidget {
       ),
       obscureText: true,
       onChanged: onChanged,
+      errorInField: errorInField,
     );
   }
 }
