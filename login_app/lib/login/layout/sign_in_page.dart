@@ -32,7 +32,7 @@ class SignInPage extends StatelessWidget {
                     minWidth: 120,
                     onPressed: () {},
                     child: Text(
-                      'Sign in',
+                      'Login',
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.white,
@@ -42,11 +42,13 @@ class SignInPage extends StatelessWidget {
                   SizedBox(width: 10),
                   RawMaterialButton(
                     onPressed: () {},
-                    child: Text('Register←'),
+                    child: Text('Go to Register'),
                     padding: EdgeInsets.all(15.0),
-                  )
+                  ),
                 ],
-              )
+              ),
+              SizedBox(height: 15),
+              CircularProgressIndicator()
             ],
           ),
         ),
