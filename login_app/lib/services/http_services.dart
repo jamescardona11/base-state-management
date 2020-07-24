@@ -25,7 +25,6 @@ class HttpServices {
   Future<List<User>> listUsers() async {
     final finalUrl = _urlApi + '/users?page=1&per_page=12';
     final response = await http.get(finalUrl);
-    debugPrint(response.body);
 
     if (_isOk(response.statusCode)) {
       final decodeBody = jsonDecode(response.body);

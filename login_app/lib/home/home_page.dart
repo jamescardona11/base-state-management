@@ -13,16 +13,27 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    HttpServices().listUsers();
+    callUserService();
   }
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: (users == null || users.length == 0)
           ? const Center(child: CircularProgressIndicator())
-          : _ListOfUsers(users: users),
+          : Container(
+              width: size.width,
+              height: size.height,
+              child: _ListOfUsers(users: users),
+            ),
     );
+  }
+
+  void callUserService() async {
+    users = await HttpServices().listUsers();
+    setState(() {});
   }
 }
 
@@ -65,7 +76,7 @@ class _BodyUserList extends StatelessWidget {
     return Container(
       width: size.width,
       height: size.height * 0.18,
-      margin: EdgeInsets.all(size.width * 0.5),
+      margin: EdgeInsets.all(size.width * 0.05),
       decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(
@@ -96,13 +107,14 @@ class _AvatarUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //debugPrint('${user.avatar}');
     return ClipRRect(
       borderRadius: const BorderRadius.only(
         bottomLeft: Radius.circular(30),
         topLeft: Radius.circular(30),
       ),
       child: FadeInImage(
-        placeholder: const AssetImage('assets/circular_loading'),
+        placeholder: const AssetImage('assets/circular_loading.gif'),
         image: NetworkImage(user.avatar),
         fit: BoxFit.cover,
       ),
