@@ -1,10 +1,28 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
-class TimerPage extends StatelessWidget {
-  final timeLap = [
-    '00.51',
-    '06.94',
+class TimerPage extends StatefulWidget {
+  @override
+  _TimerPageState createState() => _TimerPageState();
+}
+
+class _TimerPageState extends State<TimerPage> {
+  final List<String> timeLap = [
+    /*'00.51',
+    '06.94',*/
   ];
+
+  final valueInitial = 60;
+  bool actionGo = false;
+  int timeText = 60;
+  Timer timer;
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +32,7 @@ class TimerPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              '00:00',
+              timeText.toString(),
               style: TextStyle(
                 fontSize: 70,
                 fontWeight: FontWeight.bold,
@@ -26,17 +44,36 @@ class TimerPage extends StatelessWidget {
               children: [
                 _ActionText(
                   text: 'Reset',
-                  onPressed: () {},
-                  enable: true,
+                  onPressed: () {
+                    timer?.cancel();
+                    timeText = valueInitial;
+                    timeLap.clear();
+                    startTimer();
+                  },
+                  enable: actionGo,
                 ),
                 _ActionButton(
-                  icon: Icons.play_arrow,
-                  onPressed: () {},
+                  icon: actionGo ? Icons.stop : Icons.play_arrow,
+                  onPressed: () {
+                    setState(() {
+                      actionGo = !actionGo;
+                    });
+                    if (actionGo) {
+                      timeLap.clear();
+                      startTimer();
+                    } else {
+                      timer?.cancel();
+                    }
+                  },
                 ),
                 _ActionText(
                   text: 'Lap',
-                  onPressed: () {},
-                  enable: true,
+                  onPressed: () {
+                    int time = valueInitial - timeText.toInt();
+                    timeLap.add(time.toString());
+                    setState(() {});
+                  },
+                  enable: actionGo,
                 ),
               ],
             ),
@@ -45,6 +82,18 @@ class TimerPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void startTimer() {
+    timer = Timer.periodic(Duration(seconds: 1), (time) {
+      setState(() {
+        if (timeText < 1) {
+          timer.cancel();
+        } else {
+          timeText -= 1;
+        }
+      });
+    });
   }
 }
 
@@ -80,7 +129,7 @@ class _LapList extends StatelessWidget {
                 ),
                 SizedBox(width: 10),
                 Text(
-                  timeLap[index],
+                  '${timeLap[index]} seg',
                   style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                 ),
               ],
@@ -107,14 +156,21 @@ class _ActionText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return enable
-        ? InkWell(
-            onTap: onPressed,
-            child: Text(
-              text,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ? Container(
+            width: 120,
+            child: InkWell(
+              onTap: onPressed,
+              child: Center(
+                child: Text(
+                  text,
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+              ),
             ),
           )
-        : Container();
+        : Container(
+            width: 120,
+          );
   }
 }
 
