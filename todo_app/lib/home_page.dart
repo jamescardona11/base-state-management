@@ -3,7 +3,14 @@ import 'package:todo_app/add_task_screen.dart';
 import 'package:todo_app/model/todo.dart';
 import 'package:todo_app/task_list.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  String newValue = '';
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -40,7 +47,7 @@ class HomePage extends StatelessWidget {
                     )
                   ],
                 ),
-                child: TaskList(),
+                child: TaskList(addValue: newValue),
               ),
             )
           ],
@@ -61,7 +68,12 @@ class HomePage extends StatelessWidget {
       builder: (context) => SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-          child: AddTaskScreen(),
+          child: AddTaskScreen(
+            addNewTask: (value) {
+              newValue = value;
+              setState(() {});
+            },
+          ),
         ),
       ),
     );

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AddTaskScreen extends StatelessWidget {
+  final Function(String) addNewTask;
+
+  const AddTaskScreen({Key key, this.addNewTask}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     String newTaskTitle;
@@ -47,7 +51,7 @@ class AddTaskScreen extends StatelessWidget {
                 ),
                 color: Colors.blue[900],
                 onPressed: () {
-                  //Add task
+                  addNewTask(newTaskTitle);
                   Navigator.pop(context);
                 },
               ),

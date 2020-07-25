@@ -1,6 +1,6 @@
 class Todo {
-  final String name;
-  final bool check;
+  String name;
+  bool check;
 
   Todo({
     this.name,

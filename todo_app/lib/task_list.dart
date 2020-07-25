@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/model/todo.dart';
 
 class TaskList extends StatefulWidget {
+  String addValue;
+
+  TaskList({Key key, this.addValue}) : super(key: key);
+
   @override
   _TaskListState createState() => _TaskListState();
 }
@@ -17,6 +21,15 @@ class _TaskListState extends State<TaskList> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.addValue.length > 0) {
+      listOfTodo.add(Todo(
+        name: widget.addValue,
+        check: false,
+      ));
+
+      setState(() {});
+      widget.addValue = '';
+    }
     return ListView.builder(
       itemCount: listOfTodo.length,
       itemBuilder: (context, index) => Container(
@@ -47,7 +60,10 @@ class _TaskListState extends State<TaskList> {
               ),
               Checkbox(
                 value: listOfTodo[index].check,
-                onChanged: (value) {},
+                onChanged: (value) {
+                  listOfTodo[index].check = value;
+                  setState(() {});
+                },
               ),
             ],
           ),
