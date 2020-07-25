@@ -10,6 +10,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String newValue = '';
+  bool completed = false;
+  bool pending = false;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +49,44 @@ class _HomePageState extends State<HomePage> {
                     )
                   ],
                 ),
-                child: TaskList(addValue: newValue),
+                child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(top: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Pending'),
+                          Checkbox(
+                            value: pending,
+                            onChanged: (value) {
+                              setState(() {
+                                pending = value;
+                              });
+                            },
+                          ),
+                          SizedBox(width: 30),
+                          Text('Completed'),
+                          Checkbox(
+                            value: completed,
+                            onChanged: (value) {
+                              setState(() {
+                                completed = value;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: TaskList(
+                        addValue: newValue,
+                        completed: completed,
+                        pending: pending,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             )
           ],
