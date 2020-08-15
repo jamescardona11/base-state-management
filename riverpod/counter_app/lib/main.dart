@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
           FloatingActionButton(
             onPressed: _decrementCounter,
             tooltip: 'Decrement',
-            child: Icon(Icons.close),
+            child: Icon(Icons.remove),
           ),
           SizedBox(width: 10),
           FloatingActionButton(
