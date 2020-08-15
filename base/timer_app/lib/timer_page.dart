@@ -8,10 +8,7 @@ class TimerPage extends StatefulWidget {
 }
 
 class _TimerPageState extends State<TimerPage> {
-  final List<String> timeLap = [
-    /*'00.51',
-    '06.94',*/
-  ];
+  final List<String> timeLap = [];
 
   final valueInitial = 60;
   bool actionGo = false;
@@ -48,9 +45,10 @@ class _TimerPageState extends State<TimerPage> {
                     timer?.cancel();
                     timeText = valueInitial;
                     timeLap.clear();
-                    startTimer();
+                    actionGo = false;
+                    setState(() {});
+                    //startTimer();
                   },
-                  enable: actionGo,
                 ),
                 _ActionButton(
                   icon: actionGo ? Icons.stop : Icons.play_arrow,
