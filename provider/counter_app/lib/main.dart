@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       ),
       home: ChangeNotifierProvider(
         create: (_) => Counter(),
-        child: MyHomePage(title: 'Flutter Counter'),
+        child: MyHomePage(title: 'Flutter Counter Provider'),
       ),
     );
   }
