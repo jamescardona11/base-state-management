@@ -12,19 +12,13 @@
 - Timer
 - Todoapp
 
-# Bloc
+# Bloc -OK-
 - Counter
 - Login
 - Timer
 - Todoapp
 
-# Get
-- Counter
-- Login
-- Timer
-- Todoapp
-
-# MobX
+# Get -OK-
 - Counter
 - Login
 - Timer
