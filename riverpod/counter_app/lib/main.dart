@@ -1,5 +1,6 @@
 import 'package:counter_app/change_notifier_page.dart';
 import 'package:counter_app/state_notifier_page.dart';
+import 'package:counter_app/state_provider_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/all.dart';
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
           '/': (context) => MyHomePage(),
           changeNotifierRoute: (context) => CounterChangeNotifierPage(),
           stateNotifierRoute: (context) => CounterStateNotifierPage(),
-          //stateProviderRoute: (context) => CounterStateProviderPage(),
+          stateProviderRoute: (context) => CounterStateProviderPage(),
         },
       ),
     );
@@ -56,12 +57,12 @@ class MyHomePage extends StatelessWidget {
               },
               child: Text('State Notifier'),
             ),
-            /*RaisedButton(
+            RaisedButton(
               onPressed: () {
                 Navigator.pushNamed(context, stateProviderRoute);
               },
               child: Text('State Provider'),
-            ),*/
+            ),
           ],
         ),
       ),
