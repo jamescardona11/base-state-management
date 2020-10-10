@@ -6,14 +6,14 @@
 - Timer
 - Todoapp
 
-# Cubit -OK-
-- Counter
+# Cubit
+- Counter -OK-
 - Login
 - Timer
 - Todoapp
 
-# Bloc -OK-
-- Counter
+# Bloc
+- Counter -OK-
 - Login
 - Timer
 - Todoapp
