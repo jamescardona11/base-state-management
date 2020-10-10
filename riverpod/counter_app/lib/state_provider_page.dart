@@ -3,10 +3,16 @@ import 'package:flutter_riverpod/all.dart';
 
 final _counterProvider = StateProvider<int>((ref) => 0);
 
+final _isEvenProvider = Provider<bool>((ref) {
+  final counter = ref.watch(_counterProvider);
+  return (counter.state.abs().isEven);
+});
+
 class CounterStateProviderPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final counter = watch(_counterProvider).state;
+    final isEven = watch(_isEvenProvider);
     return Scaffold(
       appBar: AppBar(
         title: Text('ChangeNotifier Solution'),
@@ -19,8 +25,7 @@ class CounterStateProviderPage extends ConsumerWidget {
               'You have pushed the button this many times:',
             ),
             Text(
-              '${counter}',
-              style: Theme.of(context).textTheme.headline4,
+              '${counter} --> isEven ${isEven}',
             ),
           ],
         ),
