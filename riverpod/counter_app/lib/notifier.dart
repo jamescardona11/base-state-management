@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-
 class CounterChangeNotifier extends ChangeNotifier {
   CounterChangeNotifier([this.count = 0]);
 
@@ -23,6 +22,10 @@ class CounterStateNotifier extends StateNotifier<Counter> {
 
   void increment() {
     state = Counter(state.count + 1);
+  }
+
+  void decrement() {
+    state = Counter(state.count - 1);
   }
 }
 
