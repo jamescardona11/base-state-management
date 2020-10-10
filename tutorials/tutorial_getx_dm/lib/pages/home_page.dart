@@ -9,15 +9,38 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
       init: homeController,
-      builder: (_) => Scaffold(
-        body: Center(
-          child: Text('-->> ${_.counter}'),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: homeController.increment,
-          child: Icon(Icons.add),
-        ),
-      ),
+      builder: (_) {
+        print('Build home');
+        return Scaffold(
+          body: ListOfUserWidget(),
+          floatingActionButton: FloatingActionButton(
+            onPressed: homeController.increment,
+            child: Icon(Icons.add),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class ListOfUserWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<HomeController>(
+      id: 'users',
+      builder: (_) {
+        if (_.loading) return Center(child: LinearProgressIndicator());
+
+        return ListView.builder(
+          itemCount: _.users.length,
+          itemBuilder: (context, index) {
+            final user = _.users[index];
+            return ListTile(
+              title: Text(user.firstName),
+            );
+          },
+        );
+      },
     );
   }
 }

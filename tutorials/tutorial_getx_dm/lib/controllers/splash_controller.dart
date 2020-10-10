@@ -7,7 +7,13 @@ class SplashController extends GetxController {
     super.onReady();
 
     Future.delayed(Duration(seconds: 2), () {
-      Get.to(HomePage());
+      Get.off(HomePage());
     });
+  }
+
+  @override
+  void onClose() {
+    print('Same as dispose');
+    super.onClose();
   }
 }
