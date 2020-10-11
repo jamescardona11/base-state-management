@@ -37,6 +37,7 @@ class ListOfUserWidget extends StatelessWidget {
             final user = _.users[index];
             return ListTile(
               title: Text(user.firstName),
+              onTap: () => _.showUserProfile(user),
             );
           },
         );
